@@ -8,9 +8,11 @@ import {
 
 export const setSearchField = (text) => ({ type: CHANGE_SEARCHFIELD, payload: text })
 
-export const requestRobots = (dispatch) => {
+export const requestRobots = ()=>(dispatch) => {
   dispatch({ type: REQUEST_ROBOTS_PENDING })
   apiCall('https://jsonplaceholder.typicode.com/users')
-    .then(data => dispatch({ type: REQUEST_ROBOTS_SUCCESS, payload: data }))
+    .then(data => {
+      console.log(data);
+      return dispatch({ type: REQUEST_ROBOTS_SUCCESS, payload: data })})
     .catch(error => dispatch({ type: REQUEST_ROBOTS_FAILED, payload: error }))
 }
